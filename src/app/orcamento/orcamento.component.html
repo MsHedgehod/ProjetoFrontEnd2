@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Orçamento</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+     
+        <div class="container mt-4">
+                <div class="row">
+                  <div class="col-md-12">
+              
+                    <div class="card card-page-cart">
+                      <div class="card-body">
+                        <div class="clearfix">
+                          <div class="clearfix">
+                            <div class="float-left mb-3">
+                              <img src="assets/img/brand/bootstrap-solid.svg" alt="" height="18">
+                            </div>
+                            <div class="float-right">
+                              <h4 class="m-0 d-print-none"> Orçamento</h4>
+                                </div>
+                              </div>
+                            </div>
+                  
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <div class="float-left mt-3">
+                                  <p><b>Sr. Cliente</b></p>
+                                  <p class="text-muted font-13"></b></p>
+                                  <p class="text-muted font-13"> Entraremos em contato o mais breve possível para confirmar o seu serviço.
+                                    </p>
+                                </div>
+                              </div>
+                              <div class="col-sm-4 offset-sm-2">
+                                <div class="mt-3 float-sm-right">
+                                  <p class="font-13"><strong>Data da solicitação: </strong> &nbsp;&nbsp;&nbsp; Jan 17, 2018</p>
+                                    <p class="font-13"><strong>Status da solicitação: </strong> 
+                                      <span class="badge badge-success float-right">Processado</span></p>
+                  
+                                  <p class="font-13"><strong> Número da solicitação: </strong> <span class="float-right">#123456</span></p>
+                                </div>
+                              </div>
+                            </div>
+                  
+                            <div class="row mt-4">
+                              <div class="col-sm-4">
+                                <h6>Endereço do cliente</h6>
+                                <address>
+                                  Rua Caraúna, 08<br />
+                                  Vila Rica, Jaboatão dos Guararapes<br />
+                                  Cep 54090-330<br />
+                                  <abbr title="Phone">P:</abbr> (81) 3456-7890
+                                </address>
+                              </div>
+                              <div class="text-sm-right">
+                                    <img src="/src/assets/img/logonav.png" alt="barcode-image" class="img-fluid mr-2">
+                                  </div>
+                                </div>
+                              </div>
+                    
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="table-responsive">
+                                    <table class="table mt-4">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Serviço</th>
+                                          <th>Quantidade</th>
+                                          <th>Preço</th>
+                                          <th class="text-right">Total</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let product of products">
+                                          <td>{{ product.sku }}</td>
+                                          <td>
+                                            <b>{{ product.category }}</b> <br>
+                                            {{ product.title }}
+                                          </td>
+                                          <td>
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                              <button type="button" class="btn btn-outline-dark" (click)="removeProductCart(product)">
+                                                <span class="fa fa-minus"></span>
+                                              </button>
+                                              <button type="button" class="btn btn-outline-dark" disabled>
+                                                {{ product.count }}
+                                              </button>
+                                              <button type="button" class="btn btn-outline-dark" (click)="addProductCart(product)">
+                                                <span class="fa fa-plus"></span>
+                                              </button>
+                    
+                                            </div>
+                                          </td>
+                                          <td>{{ product.price | currency }}</td>
+                                          <td class="text-right">{{ (product.price * product.count) | currency }}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                    
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="clearfix pt-3">
+                                    <h6 class="text-muted">Notes:</h6>
+                                    <small>
+                                      Após realizar a solicitação entraremos em contato confirmando o serviço e enviando os dados referentes ao pagamento.
+                                    </small>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="float-right mt-3 mt-sm-0">
+                                    <p><b>Sub-total:</b> <span class="float-right">{{ subTotal | currency }}</span></p>
+                                    <p><b>VAT ({{ vat }}):</b> <span class="float-right">{{ (( subTotal * vat ) / 100 ) | currency}}</span></p>
+                                    <h3>{{ (subTotal - ( subTotal * vat ) / 100 ) | currency}}</h3>
+                                  </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    
+                        </div>
+                      </div>
+                    </div>
+                    
+                  
+                          
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
